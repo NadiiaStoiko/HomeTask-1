@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notes App</title>
+  <link href="/styles.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <div class="container">
+    <div class="notes-list-wrapper">
+      <div class="notes-list-title">Notes List</div>
+      <div class="notes-list-header">
+        <div class="header-col">Name</div>
+        <div class="header-col">Created</div>
+        <div class="header-col">Category</div>
+        <div class="header-col">Content</div>
+        <div class="header-col">Dates</div>
+        <div class="header-icons">
+          <img class="dir" src="./icons/archive.svg" alt="directory">
+          <img class="bin" src="./icons/white-bin.svg" alt="bin">
+        </div>
+      </div>
+      <div class="notes-list"></div>
+      <div class="btn-container">
+        <button data-modal-btn='add-note'class="create-btn">Create Note</button>
+        <div class="modal" data-modal-window="add-note">
+          <div class="modal-content">
+            <div class="modal-inner">
+              <div class="modal-title">Add new Note</div>
+              <div class="modal-close">X</div>
+            </div>
+            <div class="modal-body">
+              <form class="note-form" id="new-note" action="/">
+                <label class="form-row">Name
+                  <input class="form-part" type="text" name="name" required>
+                </label>
+                <label class="form-row-date">Date of create
+                  <input class="form-part" type="date" name="creationDate" required>
+                </label>
+                <label class="form-row">Category
+                  <select class="form-part" name="category" id="task-type">Choose category
+                    <option value="Task">Task</option>
+                    <option value="Idea">Idea</option>
+                    <option value="Random Thought">Random Thought</option>
+                  </select>
+                </label>
+                <label class="form-row" id="content">Content
+                  <textarea class="content-aria" name="content" required maxlength="500"></textarea>
+                </label>
+                <div class="action-btns">
+                  <button type="submit" class="save">Save Node</button>
+                  <button class="cancel">Cancel</button>
+                </div>
+             </form>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="summary-table-wrapper">
+      <div class="summary-table-title">Summary List</div>
+      <div class="summary-table-header">
+        <div class="summary-col">Note Category</div>
+        <div class="summary-col">Active</div>
+        <div class="summary-col">Archived</div>
+      </div>
+      <div class="summary-table-body"></div>
+    </div>
+  </div>
+<script src="./script.js"></script>
+</body>
+</html>
