@@ -1,61 +1,70 @@
 let notes = [
   {
-    id:1,
+    id:'bbl8ldksy',
     name:'Shopping List',
     creationDate:'12.09.2022',
     category:'Task',
     content:'Cheese, tea, fruits',
-    dates:''
+    dates:'',
+    status:'active'
   },
   {
-    id:2,
+    id:'bal83dksi',
     name:'New Feature',
     creationDate:'01.09.2022',
     category:'Idea',
     content:'Create new feature',
-    dates:''
+    dates:'',
+    status:'active'
   },
   {
-    id:3,
+    id:'wbl87dksq',
     name:'This day',
     creationDate:'05.09.2022',
     category:'Random Thought',
     content:'Beauty of this day',
-    dates:''
+    dates:'',
+    status:'active'
   },
   {
-    id:4,
+    id:'bdl5ldksd',
     name:'Books list',
     creationDate:'05.09.2022',
     category:'Task',
     content: 'Andrew Matthews - Goodreads,Jen Sincero - You Are a Badass',
-    dates:''
+    dates:'',
+    status:'active'
   },
   {
-    id:5,
+    id:'ebl84dksr',
     name:'Dantist visit',
     creationDate:'03.09.2022',
     category:'Task',
     content:'change Dantist visit from 04.09.2022 to 06.09.2022',
-    dates:'04.09.2022, 06.09.2022'
+    dates:'04.09.2022, 06.09.2022',
+    status:'active'
   },
   {
-    id:6,
+    id:'bbl87dksi',
     name:'Сelebration organization',
     creationDate:'03.09.2022',
     category:'Idea',
     content:'Nice place for Сelebration',
-    dates:''
+    dates:'',
+    status:'active'
   },
   {
-  id:7,
+  id:'cbl2ldksk',
   name:'What if',
   creationDate:'09.09.2022',
   category:'Random Thought',
   content:'What if...',
-  dates:''
+  dates:'',
+  status:'active'
 }
 ];
+
+let archivedNotes=[];
 
 let summList = [
   {
@@ -83,6 +92,9 @@ function createNotesList(){
   notes.forEach(note=> {
   let row = document.createElement('div');
   row.classList.add('list-row');
+  const noteNumber = document.createElement('div');
+  noteNumber.classList.add('col');
+  noteNumber.textContent=note.id;
   const noteName = document.createElement('div');
   noteName.classList.add('col');
   noteName.textContent=note.name;
@@ -104,6 +116,7 @@ function createNotesList(){
   editIcon.setAttribute('src','./icons/edit.svg');
   editIcon.setAttribute('alt','edit');
   editIcon.setAttribute('data-modal-btn','add-note');
+  editIcon.classList.add('editNote');
   let archiveIcon = document.createElement('img');
   archiveIcon.setAttribute('src','./icons/archive.svg')
   archiveIcon.setAttribute('alt','archive');
@@ -115,6 +128,7 @@ function createNotesList(){
   actionIcons.appendChild(editIcon);
   actionIcons.appendChild(archiveIcon);
   actionIcons.appendChild(delIcon);
+  row.appendChild(noteNumber);
   row.appendChild(noteName);
   row.appendChild(created);
   row.appendChild(noteCategory);
@@ -122,6 +136,60 @@ function createNotesList(){
   row.appendChild(dates);
   row.appendChild(actionIcons);
   notesList.appendChild(row);
+  })
+}
+
+function createArchivedNotesList(){
+  let archivedNotesList=document.querySelector('.archived-notes-list');
+  archivedNotesList.textContent='';
+  archivedNotes.forEach(note=> {
+  let row = document.createElement('div');
+  row.classList.add('list-row');
+  const noteNumber = document.createElement('div');
+  noteNumber.classList.add('col');
+  noteNumber.textContent=note.id;
+
+  const noteName = document.createElement('div');
+  noteName.classList.add('col');
+  noteName.textContent=note.name;
+  const created = document.createElement('div');
+  created.classList.add('col');
+  created.textContent = note.creationDate;
+  const noteCategory = document.createElement('div');
+  noteCategory.classList.add('col');
+  noteCategory.textContent = note.category;
+  const noteContent = document.createElement('div');
+  noteContent.classList.add('col');
+  noteContent.textContent = note.content;
+  const dates = document.createElement('div');
+  dates.classList.add('col');
+  dates.textContent = note.dates;
+  const actionIcons = document.createElement('div');
+  actionIcons.classList.add('action-icons');
+  let editIcon = document.createElement('img');
+  editIcon.setAttribute('src','./icons/edit.svg');
+  editIcon.setAttribute('alt','edit');
+  editIcon.setAttribute('data-modal-btn','add-note');
+  editIcon.classList.add('editNote');
+  let archiveIcon = document.createElement('img');
+  archiveIcon.setAttribute('src','./icons/archive.svg')
+  archiveIcon.setAttribute('alt','archive');
+  archiveIcon.classList.add('dir');
+  let delIcon = document.createElement('img');
+  delIcon.setAttribute('src','./icons/white-bin.svg');
+  delIcon.setAttribute('alt','bin');
+  delIcon.classList.add('bin');
+  actionIcons.appendChild(editIcon);
+  actionIcons.appendChild(archiveIcon);
+  actionIcons.appendChild(delIcon);
+  row.appendChild(noteNumber);
+  row.appendChild(noteName);
+  row.appendChild(created);
+  row.appendChild(noteCategory);
+  row.appendChild(noteContent);
+  row.appendChild(dates);
+  row.appendChild(actionIcons);
+  archivedNotesList.appendChild(row);
   })
 }
 
@@ -144,12 +212,28 @@ function createSummList(){
     row.appendChild(archived);
     sumBody.appendChild(row);
   }
-
   )
 }
 
 createNotesList();
+createArchivedNotesList();
 createSummList();
+
+
+
+let showArchiveBtn=document.querySelector('.show-archive-btn');
+let archivedNotesListWrapper=document.querySelector('.archived-notes-list-wrapper');
+showArchiveBtn.addEventListener('click', ()=> {
+  archivedNotesListWrapper.classList.contains('active')?
+  archivedNotesListWrapper.classList.remove('active') :
+  archivedNotesListWrapper.classList.add('active');
+
+  archivedNotesListWrapper.classList.contains('active')?
+  showArchiveBtn.innerHTML ="Hide Archive":
+  showArchiveBtn.innerHTML ="Show Archive";
+})
+
+// модальное окно
 
 let modalBtns=document.querySelectorAll('*[data-modal-btn]');
 modalBtns.forEach(modalButton => {
@@ -158,7 +242,10 @@ modalBtns.forEach(modalButton => {
   let modal = document.querySelector('[data-modal-window = '+name+']');
   modal.style.display='block';
   let close= document.querySelector('.modal-close');
-  close.addEventListener('click',()=>modal.style.display='none')
+  close.innerHTML="\u00D7"
+  close.addEventListener('click',()=>modal.style.display='none');
+  let submitBtn= document.querySelector('.save');
+  submitBtn.addEventListener('click',()=>modal.style.display='none');
 })
 })
 
@@ -174,10 +261,47 @@ document.querySelector('.cancel').addEventListener('click',()=>{
   modals.forEach(modal => modal.style.display='none');
 })
 
+// форма внутри модальног окна для добавления новой заметки, примитивная валидация, очистка при закрытии
+//  добавление данных формы в объект
 let form=document.querySelector('#new-note')
 form.addEventListener('submit', function(event){
   event.preventDefault();
   let formObj = new FormData(form);
-  let values = Object.fromEntries(formObj.entries());
-  console.log('val',values);
+  let newNote = Object.fromEntries(formObj.entries());
+  newNote.id = Math.random (). toString (36) .substr (2, 9);
+  newNote.status='active';
+  notes.push(newNote);
+  // console.log('newNote',newNote);
+  console.log('notes',notes);
+  let notesList=document.querySelector('.notes-list');
+  notesList.textContent='';
+  createNotesList(notes);
+  form.reset();
+})
+
+// удаление и перемещение
+document.querySelectorAll('.bin').forEach(delBtn=>{
+  delBtn.addEventListener('click',(e)=>{
+  console.log('click')
+  const actionIcons= delBtn.parentNode;
+  const rowForDel = actionIcons.parentNode;
+  let idElForDel = rowForDel.children[0].textContent;
+  notes=notes.filter(note=>note.id!==idElForDel);
+  rowForDel.remove();
+  console.log(notes);
+  })
+})
+
+document.querySelectorAll('.dir').forEach(archiveBtn=>{
+  archiveBtn.addEventListener('click',(e)=>{
+  console.log('arcived');
+  const actionIcons= archiveBtn.parentNode;
+  const rowForArchive = actionIcons.parentNode;
+  let idElemForArcive = rowForArchive.children[0].textContent;
+  rowForArchive.remove();
+  let noteForArchived=notes.filter(note=>note.id===idElemForArcive);
+  archivedNotes.push(noteForArchived[0]);
+  console.log('archivedNotes', archivedNotes);
+  createArchivedNotesList()
+  })
 })
