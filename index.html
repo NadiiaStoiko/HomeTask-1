@@ -25,7 +25,7 @@
       </div>
       <div class="notes-list"></div>
       <div class="btn-container">
-        <button data-modal-btn='add-note'class="create-btn">Create Note</button>
+        <button onclick="addNewNote()" data-modal-btn='add-note'class="create-btn">Create Note</button>
         <div class="modal" data-modal-window="add-note">
           <div class="modal-content">
             <div class="modal-inner">
@@ -35,13 +35,13 @@
             <div class="modal-body">
               <form class="note-form" id="new-note" action="/">
                 <label class="form-row">Name
-                  <input class="form-part" type="text" name="name" required>
+                  <input class="form-part name" type="text" name="name" required>
                 </label>
                 <label class="form-row-date">Date of create
-                  <input class="form-part" type="date" name="creationDate" required>
+                  <input class="form-part creation-date" type="date" name="creationDate" required>
                 </label>
                 <label class="form-row">Category
-                  <select class="form-part" name="category" id="task-type">Choose category
+                  <select class="form-part category" name="category" id="task-type">Choose category
                     <option value="Task">Task</option>
                     <option value="Idea">Idea</option>
                     <option value="Random Thought">Random Thought</option>
@@ -51,14 +51,14 @@
                   <textarea class="content-aria" name="content" required maxlength="500"></textarea>
                 </label>
                 <div class="action-btns">
-                  <button type="submit" class="save">Save Node</button>
-                  <button class="cancel">Cancel</button>
+                  <button type="button" class="save">Save Node</button>
+                  <button type="button" class="cancel">Cancel</button>
                 </div>
              </form>
             </div>
           </div>
         </div>
-        <button class="show-archive-btn">Show Archive</button>
+        <button onclick ="archiveButtonTogler()" class="show-archive-btn">Show Archive</button>
       </div>
     </div>
     <div class="archived-notes-list-wrapper">
@@ -77,39 +77,6 @@
       </div>
       <div class="archived-notes-list"></div>
       <div class="btn-container">
-        <!-- <button data-modal-btn='add-note'class="create-btn">Create Note</button> -->
-        <div class="modal" data-modal-window="add-note">
-          <div class="modal-content">
-            <div class="modal-inner">
-              <div class="modal-title">Add new Note</div>
-              <div class="modal-close"></div>
-            </div>
-            <div class="modal-body">
-              <form class="note-form" id="new-note" action="/">
-                <label class="form-row">Name
-                  <input class="form-part" type="text" name="name" required>
-                </label>
-                <label class="form-row-date">Date of create
-                  <input class="form-part" type="date" name="creationDate" required>
-                </label>
-                <label class="form-row">Category
-                  <select class="form-part" name="category" id="task-type">Choose category
-                    <option value="Task">Task</option>
-                    <option value="Idea">Idea</option>
-                    <option value="Random Thought">Random Thought</option>
-                  </select>
-                </label>
-                <label class="form-row" id="content">Content
-                  <textarea class="content-aria" name="content" required maxlength="500"></textarea>
-                </label>
-                <div class="action-btns">
-                  <button type="submit" class="save">Save Node</button>
-                  <button class="cancel">Cancel</button>
-                </div>
-             </form>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
     <div class="summary-table-wrapper">

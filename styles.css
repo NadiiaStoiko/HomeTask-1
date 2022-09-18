@@ -55,7 +55,7 @@ body {
   height:20px;
 }
 
-.dir {
+.dir,.dir-de-archive {
   width: 25px;
   height:25px;
   margin-right:3px;
@@ -98,7 +98,7 @@ body {
   margin-bottom: 10px;
 }
 
-.create-btn, .save, .cancel, .show-archive-btn {
+.create-btn, .save, .cancel, .show-archive-btn, .ok-btn, .change {
   margin: 1%;
   width: 15%;
   padding:10px;
