@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
   <title>Notes App</title>
   <link href="/styles.css" rel="stylesheet" type="text/css">
 </head>
+
 <body>
   <div class="container">
     <div class="notes-list-wrapper">
@@ -25,7 +27,7 @@
       </div>
       <div class="notes-list"></div>
       <div class="btn-container">
-        <button onclick="addNewNote()" data-modal-btn='add-note'class="create-btn">Create Note</button>
+        <button onclick="addNewNote()" data-modal-btn='add-note' class="create-btn">Create Note</button>
         <div class="modal" data-modal-window="add-note">
           <div class="modal-content">
             <div class="modal-inner">
@@ -54,11 +56,11 @@
                   <button type="button" class="save">Save Node</button>
                   <button type="button" class="cancel">Cancel</button>
                 </div>
-             </form>
+              </form>
             </div>
           </div>
         </div>
-        <button onclick ="archiveButtonTogler()" class="show-archive-btn">Show Archive</button>
+        <button onclick="archiveButtonTogler()" class="show-archive-btn">Show Archive</button>
       </div>
     </div>
     <div class="archived-notes-list-wrapper">
@@ -89,6 +91,9 @@
       <div class="summary-table-body"></div>
     </div>
   </div>
-<script src="./script.js"></script>
+
+  <script src="script.js"></script>
+
 </body>
+
 </html>
