@@ -233,6 +233,8 @@ function summListCounter() {
 }
 createNotesList();
 createArchivedNotesList();
+createSummList();
+
 
 // тоглер на кнопку з архівом
 function archiveButtonTogler() {
@@ -288,7 +290,6 @@ function openEditNoteModal() {
       //  зчитати данні з форми до об'єкту
       const actionIcons = openModalButton.parentNode;
       const rowForChange = actionIcons.parentElement;
-      console.log('rowForChange', rowForChange)
       let id = rowForChange.querySelector('.id').textContent;
       let name = rowForChange.querySelector('.name').textContent;
       let creationDate = rowForChange.querySelector('.creation-date').textContent;
@@ -301,7 +302,6 @@ function openEditNoteModal() {
         category,
         content
       }
-      let form = document.querySelector('#new-note');
       form.querySelector('.name').value = dataForEditing.name;
       form.querySelector('.creation-date').value = dataForEditing.creationDate;
       const select = form.querySelector('.category');
@@ -338,13 +338,13 @@ function openEditNoteModal() {
           archivedNotes[changeIndex].category = category;
           archivedNotes[changeIndex].content = content;
           let archNotesList = document.querySelector('.archived-notes-list');
-          console.log('archNotesList', archNotesList)
           archivedNotesList.textContent = '';
           createArchivedNotesList();
         }
       })
     });
   })
+  createSummList();
 }
 
 window.onclick = function (e) {
